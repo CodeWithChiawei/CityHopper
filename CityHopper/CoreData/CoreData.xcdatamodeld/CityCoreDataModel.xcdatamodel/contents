@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22E261" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="City" representedClassName="City" syncable="YES" codeGenerationType="class">
+        <attribute name="countryCode" optional="YES" attributeType="String"/>
+        <attribute name="countryName" optional="YES" attributeType="String"/>
+        <attribute name="didVisit" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="isFavorited" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="willVisit" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+</model>

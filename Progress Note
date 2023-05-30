@@ -1,0 +1,20 @@
+TAB BAR:
+Tab Bar I probably need one more viewController
+
+SEARCH VIEWCONTROLLER:
+check the initial spin on the searchScreen Globe. On phone it doesnt spin initially
+check when fetching the city, if the city is nil, should have some type of alert tell user to redo the rotate
+disable most of the user interation on the map beside spin.
+
+CITY PICk VIEWCONTROLLER:
+Give diffeent option to view the map- Street(Default) and satellite
+Add a button for person to re-generate the city
+
+SEGMENT VIEWCONTROLLER:
+
+
+
+
+
+
+
