@@ -9,7 +9,6 @@ import Foundation
 
 class ProfileViewModel {
     
-    
     var city: City?
     
     func updateCity() {
