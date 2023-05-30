@@ -15,6 +15,6 @@ class ProfileViewModel {
         guard let city = city else { return }
         CityModelController.shared.updateCityisVisited(city: city, didVisit: city.didVisit)
         CityModelController.shared.updateCityIsGoing(city: city, willVisit: city.willVisit)
-    }
+    }  
 }
 
