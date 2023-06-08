@@ -10,9 +10,13 @@ import UIKit
 
 class RegenerateLoadingView: UIView {
     
-    private let imageView = UIImageView(image: UIImage(named: "loadingGlobe"))
-    
-    private let saveToFutureLabel: UILabel = {
+    private let loadingGlobeImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "loadingGlobe")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    private let addToFutureLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
@@ -22,7 +26,7 @@ class RegenerateLoadingView: UIView {
         return label
     }()
     
-    private let saveToVisitedLabel: UILabel = {
+    private let addToVisitedLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
@@ -42,24 +46,24 @@ class RegenerateLoadingView: UIView {
         return label
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        var blurEffectView: UIVisualEffectView!
-        var dimView: UIView!
-        
+    private let blurEffectView: UIVisualEffectView = {
+        var blurEffectView = UIVisualEffectView()
         let blurEffect = UIBlurEffect(style: .regular)
         blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        addSubview(blurEffectView)
-        
-        dimView = UIView()
+        return blurEffectView
+    }()
+    
+    private let dimView: UIView = {
+        let dimView = UIView()
         dimView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        dimView.frame = bounds
         dimView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        addSubview(dimView)
-        
+        return dimView
+    }()
+    
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         constraint()
     }
     
@@ -68,29 +72,32 @@ class RegenerateLoadingView: UIView {
     }
     
     private func constraint() {
-        
-        addSubview(imageView)
-        addSubview(saveToFutureLabel)
+        addSubview(blurEffectView)
+        addSubview(dimView)
+        addSubview(loadingGlobeImageView)
+        addSubview(addToFutureLabel)
         addSubview(nextCityLabel)
-        addSubview(saveToVisitedLabel)
+        addSubview(addToVisitedLabel)
         
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        blurEffectView.frame = bounds
+        dimView.frame = bounds
         
-        saveToFutureLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 80).isActive = true
-        saveToFutureLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
-        saveToFutureLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
-        saveToFutureLabel.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        loadingGlobeImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        loadingGlobeImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        loadingGlobeImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        loadingGlobeImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
-        saveToVisitedLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 80).isActive = true
-        saveToVisitedLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
-        saveToVisitedLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
-        saveToVisitedLabel.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        addToFutureLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 80).isActive = true
+        addToFutureLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
+        addToFutureLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
+        addToFutureLabel.heightAnchor.constraint(equalToConstant: 150).isActive = true
         
-        nextCityLabel.topAnchor.constraint(equalTo: saveToFutureLabel.bottomAnchor, constant: 10).isActive = true
+        addToVisitedLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 80).isActive = true
+        addToVisitedLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
+        addToVisitedLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
+        addToVisitedLabel.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        
+        nextCityLabel.topAnchor.constraint(equalTo: addToFutureLabel.bottomAnchor, constant: 10).isActive = true
         nextCityLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         nextCityLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
     }
@@ -102,19 +109,19 @@ class RegenerateLoadingView: UIView {
         rotationAnimation.isCumulative = true
         rotationAnimation.repeatCount = .infinity
         
-        imageView.layer.add(rotationAnimation, forKey: "rotationAnimation")
+        loadingGlobeImageView.layer.add(rotationAnimation, forKey: "rotationAnimation")
     }
     
-    func setLabel(cityName: String, visited: Bool) {
+    func setLabel(cityName: String = "", visited: Bool) {
         if cityName == "" {
-            saveToFutureLabel.isHidden = true
-            saveToVisitedLabel.isHidden = true
+            addToFutureLabel.isHidden = true
+            addToVisitedLabel.isHidden = true
         } else if visited == true {
-            saveToFutureLabel.isHidden = true
-            saveToVisitedLabel.isHidden = false
-            saveToVisitedLabel.text = "\(cityName) has been added \n to your visited list"
+            addToFutureLabel.isHidden = true
+            addToVisitedLabel.isHidden = false
+            addToVisitedLabel.text = "\(cityName) has been added \n to your visited list"
         } else if visited != true {
-            saveToFutureLabel.text = "\(cityName) has been added \n to your future destination"
+            addToFutureLabel.text = "\(cityName) has been added \n to your future destination"
         }
     }
 }

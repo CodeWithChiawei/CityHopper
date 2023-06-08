@@ -4,14 +4,12 @@
 //
 //  Created by chiawei wen on 3/11/23.
 //
-//
 
 import Foundation
 import UIKit
 
 class SelectViewController: UIViewController {
     
-    //ViewModel should be private
     private let viewModel = SelectViewModel()
     private let contentView = SelectView()
     private let haptics = UIImpactFeedbackGenerator(style: .light)

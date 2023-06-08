@@ -11,7 +11,7 @@ class RegenerateLoadingViewController: UIViewController {
     
     private let contentView = RegenerateLoadingView()
     var isVisited = Bool()
-    var city: String? = ""
+    var city: String = String()
     
     override func loadView() {
          view = contentView
@@ -19,7 +19,7 @@ class RegenerateLoadingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        contentView.setLabel(cityName: city ?? "", visited: isVisited)
+        contentView.setLabel(cityName: city, visited: isVisited)
     }
 
     override func viewDidAppear(_ animated: Bool) {
