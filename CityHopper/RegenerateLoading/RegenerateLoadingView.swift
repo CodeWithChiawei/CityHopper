@@ -16,6 +16,7 @@ class RegenerateLoadingView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
     private let addToFutureLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -79,8 +80,15 @@ class RegenerateLoadingView: UIView {
         addSubview(nextCityLabel)
         addSubview(addToVisitedLabel)
         
-        blurEffectView.frame = bounds
-        dimView.frame = bounds
+        blurEffectView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        blurEffectView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        blurEffectView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        blurEffectView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        
+        dimView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        dimView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        dimView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        dimView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         
         loadingGlobeImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         loadingGlobeImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true

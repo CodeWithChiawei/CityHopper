@@ -77,6 +77,7 @@ class ExploreViewController: UIViewController  {
         if continent != nil {
             let loadingScreen = SimpleLoadingViewController()
             loadingScreen.modalPresentationStyle = .overFullScreen
+            loadingScreen.modalTransitionStyle = .crossDissolve
             present(loadingScreen, animated: false)
             viewModel.fetchCity { [weak self] result in
                 let cityViewControler = SelectViewController()
