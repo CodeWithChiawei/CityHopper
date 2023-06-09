@@ -12,14 +12,13 @@ import CoreData
 import CoreLocation
 import AppTrackingTransparency
 
-class ExploreViewController: UIViewController  {
+class ContinentGlobeViewController: UIViewController  {
     
-    private let viewModel = ExploreViewModel()
-    private let contentView = ExploreView()
-    private lazy var currentLocation = LocationManager.shared.currentLocation
-    private let haptics = UIImpactFeedbackGenerator(style: .medium)
-    private let continentModel = Continent()
+    private let viewModel = ContinentGlobeViewModel()
+    private let contentView = ContinentGlobeView()
+    private let continentModel = ContinentData()
     private var previousSelectedIndex: IndexPath? = nil
+    private let haptics = UIImpactFeedbackGenerator(style: .medium)
     
     override func loadView() {
         view = contentView
@@ -72,58 +71,65 @@ class ExploreViewController: UIViewController  {
     private func exploreButtonTapped() {
         haptics.impactOccurred()
         isUIUserInteratable(isActive: false)
-        let continent = UserDefaults.standard.string(forKey: UserDefaultKeys.selectedCellContinent.rawValue)
-        
-        if continent != nil {
-            let loadingScreen = SimpleLoadingViewController()
-            loadingScreen.modalPresentationStyle = .overFullScreen
-            loadingScreen.modalTransitionStyle = .crossDissolve
-            present(loadingScreen, animated: false)
-            viewModel.fetchCity { [weak self] result in
-                let cityViewControler = SelectViewController()
-                cityViewControler.modalPresentationStyle = .fullScreen
-                switch result {
-                case .success(let city):
-                    let cityViewControler = SelectViewController()
-                    cityViewControler.modalPresentationStyle = .fullScreen
-                    CityModelController.shared.exploreCity = city
-                    self?.contentView.globeView.setCityPin(
-                        with: city.latitude,
-                        and: city.longitude
-                    )
-                    self?.present(cityViewControler, animated: true, completion: nil)
-                    
-                    self?.contentView.globeView.setCityPin(
-                        with: city.latitude,
-                        and: city.longitude
-                    )
-                    loadingScreen.dismiss(animated: true)
-                    self?.contentView.globeView.globe?.camera.fly(
-                        to: CameraOptions(
-                            center: CLLocationCoordinate2D(
-                                latitude: city.latitude,
-                                longitude: city.longitude
-                            ),
-                            zoom: 3,
-                            bearing: 0
-                        ),
-                        duration: 1.5
-                    ) { [weak self] _ in
-                        self?.haptics.impactOccurred()
-                        self?.present(cityViewControler, animated: true)
-                        self?.isUIUserInteratable(isActive: true)
-                        self?.contentView.globeView.cityPointAnnotationManager?.annotations.removeAll()
-                    }
-                    
-                case .failure(let error):
-                    print("Error: \(error)")
-                }
+        guard let _ = UserDefaults.standard.string(forKey: UserDefaultKeys.selectedCellContinent.rawValue) else {
+            self.presentNoContinentSelectedAlert()
+            return
+        }
+        let loadingScreen = SimpleLoadingViewController()
+        presentLoadingScreen(loadingScreen: loadingScreen)
+        viewModel.fetchCity { [weak self] result in
+            switch result {
+            case .success(let city):
+                self?.handleSuccessFetch(city: city,
+                                         loadingScreen: loadingScreen
+                )
+            case .failure(let error):
+                print("Error: \(error)")
             }
-        } else {
-            let alertController = UIAlertController(title: "No Continent Selected", message: "Please select a continent \n to explore new city.", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Okay", style: .cancel))
-            present(alertController, animated: true)
-            isUIUserInteratable(isActive: true)
+        }
+    }
+    
+    private func presentNoContinentSelectedAlert() {
+        let alertController = UIAlertController(title: "No Continent Selected", message: "Please select a continent \n to explore new city.", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Okay", style: .cancel))
+        present(alertController, animated: true)
+        isUIUserInteratable(isActive: true)
+    }
+    
+    private func presentLoadingScreen(loadingScreen: UIViewController) {
+        loadingScreen.modalPresentationStyle = .overFullScreen
+        loadingScreen.modalTransitionStyle = .crossDissolve
+        present(loadingScreen, animated: false)
+    }
+    
+    private func handleSuccessFetch(city: FetchCityModel, loadingScreen: UIViewController) {
+        CityModelController.shared.exploreCity = city
+        contentView.globeView.setCityPin(
+            with: city.latitude,
+            and: city.longitude
+        )
+        contentView.globeView.setCityPin(
+            with: city.latitude,
+            and: city.longitude
+        )
+        loadingScreen.dismiss(animated: true)
+        contentView.globeView.globe?.camera.fly(
+            to: CameraOptions(
+                center: CLLocationCoordinate2D(
+                    latitude: city.latitude,
+                    longitude: city.longitude
+                ),
+                zoom: 3,
+                bearing: 0
+            ),
+            duration: 1.5
+        ) { [weak self] _ in
+            let cityViewControler = SelectViewController()
+            cityViewControler.modalPresentationStyle = .fullScreen
+            self?.haptics.impactOccurred()
+            self?.present(cityViewControler, animated: true)
+            self?.isUIUserInteratable(isActive: true)
+            self?.contentView.globeView.cityPointAnnotationManager?.annotations.removeAll()
         }
     }
     
@@ -145,15 +151,15 @@ class ExploreViewController: UIViewController  {
     }
     
     private func setUserPin() {
-        guard let latitude = currentLocation?.coordinate.latitude,
-              let longitude = currentLocation?.coordinate.longitude
+        guard let latitude = LocationManager.shared.currentLocation?.coordinate.latitude,
+              let longitude = LocationManager.shared.currentLocation?.coordinate.longitude
         else { return }
         contentView.globeView.setUserLocationPin(with: latitude, and: longitude)
     }
 }
 
 
-extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ContinentGlobeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return continentModel.continentModelData.count
@@ -166,8 +172,8 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let continentData = continentModel.continentModelData[indexPath.row]
         guard let cell = contentView.collectionView.dequeueReusableCell(
-            withReuseIdentifier: ContinentSeletionCollectionCell.identifier,
-            for: indexPath) as? ContinentSeletionCollectionCell else {
+            withReuseIdentifier: ContinentGlobeCollectionCell.identifier,
+            for: indexPath) as? ContinentGlobeCollectionCell else {
             return UICollectionViewCell()
         }
         cell.cellConfigures(backgroundColor: continentData.color,

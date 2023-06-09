@@ -8,14 +8,13 @@
 import Foundation
 import UIKit
 
-class ContinentSeletionCollectionCell: UICollectionViewCell {
+class ContinentGlobeCollectionCell: UICollectionViewCell {
     
     static let identifier = {
-        return String(describing: ContinentSeletionCollectionCell.self)
+        return String(describing: ContinentGlobeCollectionCell.self)
     }()
     
-    
-    let label: UILabel = {
+    private let label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18, weight: .bold)
@@ -27,7 +26,7 @@ class ContinentSeletionCollectionCell: UICollectionViewCell {
         return label
     }()
     
-    let imageView: UIImageView = {
+    private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.isUserInteractionEnabled = false

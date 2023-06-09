@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CoreLocation
 
-class ExploreViewModel {
+class ContinentGlobeViewModel {
     
     private let networkManager = NetworkManager()
     

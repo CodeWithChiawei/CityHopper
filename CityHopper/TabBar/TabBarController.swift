@@ -18,14 +18,11 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.delegate = self
         constraints()
+        configureTabBar()
+        self.delegate = self
         
-        UITabBar.appearance().backgroundImage = UIImage()
-        UITabBar.appearance().shadowImage = UIImage()
-        
-        let searchViewController = ExploreViewController()
+        let searchViewController = ContinentGlobeViewController()
         searchViewController.title = "Explore"
         searchViewController.tabBarItem.image = UIImage(systemName: "globe.asia.australia.fill")
         
@@ -37,8 +34,17 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         instructionViewController.title = "Instruction"
         instructionViewController.tabBarItem.image = UIImage(systemName: "info.circle")
         
+        self.setViewControllers([searchViewController,
+                                 savedListViewController,
+                                 instructionViewController]
+                                , animated: false
+        )
+    }
+    
+    private func configureTabBar() {
+        UITabBar.appearance().backgroundImage = UIImage()
+        UITabBar.appearance().shadowImage = UIImage()
         
-        self.setViewControllers([searchViewController, savedListViewController, instructionViewController], animated: false)
         self.selectedIndex = 0
         self.tabBar.tintColor = .systemBlue
         self.tabBar.backgroundColor = .white
@@ -50,11 +56,9 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     private func constraints() {
         view.addSubview(topSeperationLine)
-        
         topSeperationLine.centerYAnchor.constraint(equalTo: tabBar.topAnchor).isActive = true
         topSeperationLine.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         topSeperationLine.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         topSeperationLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
-    
 }

@@ -17,7 +17,7 @@ struct ContinentModel {
     var isSelected: Bool
 }
 
-class Continent {
+class ContinentData {
     
     var continentModelData: [ContinentModel] = [
         ContinentModel(continent: "Asia", color: .systemPink.withAlphaComponent(0.85), image: UIImage(named: "asia"), latitude: 39, longitude: 101, isSelected: false),

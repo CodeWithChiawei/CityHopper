@@ -3,7 +3,7 @@ import Foundation
 import UIKit
 import MapboxMaps
 
-class ExploreGlobeView: UIView {
+class ContinentGlobe_GlobeView: UIView {
     
     var globe: MapView?
     private var camera: CameraOptions?

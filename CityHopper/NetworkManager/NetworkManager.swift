@@ -88,10 +88,11 @@ class NetworkManager {
                 if cityDatas?.city.count == 0 {
                     completion(.failure(.noCityDataAvailable))
                 } else {
-                    let randomNum = Int.random(in: 0..<(cityDatas?.city.count ?? 0))
-                    let randomCityData = cityDatas?.city[Int(randomNum)]
-                    guard let cityData = randomCityData else { return }
-                    completion(.success(cityData))
+//                    let randomNum = Int.random(in: 0..<(cityDatas?.city.count ?? 0))
+//                    let randomCityData = cityDatas?.city[Int(randomNum)]
+//                    guard let cityData = randomCityData else { return }
+//                    completion(.success(cityData))
+                    completion(.success(FetchCityModel(name: "", latitude: 0, longitude: 0, countryCode: "US")))
                 }
             }
         }.resume()

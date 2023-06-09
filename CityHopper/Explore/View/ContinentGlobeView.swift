@@ -3,7 +3,7 @@ import UIKit
 import Foundation
 
 
-class ExploreView: UIView {
+class ContinentGlobeView: UIView {
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -12,14 +12,14 @@ class ExploreView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(ContinentSeletionCollectionCell.self, forCellWithReuseIdentifier: ContinentSeletionCollectionCell.identifier)
+        collectionView.register(ContinentGlobeCollectionCell.self, forCellWithReuseIdentifier: ContinentGlobeCollectionCell.identifier)
         collectionView.backgroundColor = .clear
         collectionView.allowsSelection = true
         return collectionView
     }()
     
-    let globeView: ExploreGlobeView = {
-        let globeView = ExploreGlobeView()
+    let globeView: ContinentGlobe_GlobeView = {
+        let globeView = ContinentGlobe_GlobeView()
         globeView.translatesAutoresizingMaskIntoConstraints = false
         globeView.clipsToBounds = true
         return globeView
