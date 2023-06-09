@@ -16,7 +16,7 @@ class ContinentGlobeViewController: UIViewController  {
     
     private let viewModel = ContinentGlobeViewModel()
     private let contentView = ContinentGlobeView()
-    private let continentModel = ContinentData()
+    private let continentData = ContinentData()
     private var previousSelectedIndex: IndexPath? = nil
     private let haptics = UIImpactFeedbackGenerator(style: .medium)
     
@@ -49,8 +49,8 @@ class ContinentGlobeViewController: UIViewController  {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        for index in 0..<continentModel.continentModelData.count {
-            continentModel.continentModelData[index].isSelected = false
+        for index in 0..<continentData.continentModelData.count {
+            continentData.continentModelData[index].isSelected = false
         }
         previousSelectedIndex = nil
         contentView.globeView.stopDisplayLink()
@@ -162,7 +162,7 @@ class ContinentGlobeViewController: UIViewController  {
 extension ContinentGlobeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return continentModel.continentModelData.count
+        return continentData.continentModelData.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -170,7 +170,7 @@ extension ContinentGlobeViewController: UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let continentData = continentModel.continentModelData[indexPath.row]
+        let continentData = continentData.continentModelData[indexPath.row]
         guard let cell = contentView.collectionView.dequeueReusableCell(
             withReuseIdentifier: ContinentGlobeCollectionCell.identifier,
             for: indexPath) as? ContinentGlobeCollectionCell else {
@@ -193,19 +193,19 @@ extension ContinentGlobeViewController: UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        continentModel.continentModelData[indexPath.row].isSelected = true
+        continentData.continentModelData[indexPath.row].isSelected = true
         if let previousSelectedIndex = previousSelectedIndex, indexPath != previousSelectedIndex {
-            continentModel.continentModelData[previousSelectedIndex.row].isSelected = false
+            continentData.continentModelData[previousSelectedIndex.row].isSelected = false
             collectionView.reloadItems(at: [previousSelectedIndex])
-            continentModel.continentModelData[indexPath.row].isSelected = true
+            continentData.continentModelData[indexPath.row].isSelected = true
             collectionView.reloadItems(at: [indexPath])
             self.previousSelectedIndex = indexPath
         } else {
             previousSelectedIndex = indexPath
-            continentModel.continentModelData[indexPath.row].isSelected = true
+            continentData.continentModelData[indexPath.row].isSelected = true
             collectionView.reloadItems(at: [indexPath])
         }
-        UserDefaults.standard.set(continentModel.continentModelData[indexPath.row].continent, forKey: UserDefaultKeys.selectedCellContinent.rawValue)
+        UserDefaults.standard.set(continentData.continentModelData[indexPath.row].continent, forKey: UserDefaultKeys.selectedCellContinent.rawValue)
     }
 }
 

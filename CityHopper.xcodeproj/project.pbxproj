@@ -19,6 +19,7 @@
 		BC40BDCA29D5071B00BFC867 /* MapStyleURI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC40BDC929D5071B00BFC867 /* MapStyleURI.swift */; };
 		BC40BDCE29D515E800BFC867 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC40BDCD29D515E800BFC867 /* UserDefaultKeys.swift */; };
 		BC40BDD129D51F0600BFC867 /* SelectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC40BDD029D51F0600BFC867 /* SelectViewModel.swift */; };
+		BC52C8B92A32A83400C8DE3B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52C8B82A32A83400C8DE3B /* Extension.swift */; };
 		BC57DE692A01E7A700601AB2 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57DE682A01E7A700601AB2 /* ScrollView.swift */; };
 		BC841B8629D5511700A3F5C1 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC841B8529D5511700A3F5C1 /* CoreDataStack.swift */; };
 		BC841B8829D5515500A3F5C1 /* CityCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC841B8729D5515500A3F5C1 /* CityCoreData.swift */; };
@@ -73,6 +74,7 @@
 		BC40BDC929D5071B00BFC867 /* MapStyleURI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapStyleURI.swift; sourceTree = "<group>"; };
 		BC40BDCD29D515E800BFC867 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		BC40BDD029D51F0600BFC867 /* SelectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewModel.swift; sourceTree = "<group>"; };
+		BC52C8B82A32A83400C8DE3B /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		BC57DE682A01E7A700601AB2 /* ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		BC841B8529D5511700A3F5C1 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		BC841B8729D5515500A3F5C1 /* CityCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCoreData.swift; sourceTree = "<group>"; };
@@ -185,6 +187,14 @@
 			path = SimpleLoading;
 			sourceTree = "<group>";
 		};
+		BC52C8BA2A32A84900C8DE3B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BC52C8B82A32A83400C8DE3B /* Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		BC945AE42A269C2E002D3D92 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +299,7 @@
 				BC40BDD829D526E900BFC867 /* MapBoxMaps */,
 				BC40BDCF29D515F000BFC867 /* UserDefault */,
 				BCDC331929D536E000496C97 /* CoreData */,
+				BC52C8BA2A32A84900C8DE3B /* Extension */,
 				BCAEA8CE29C2723300C98647 /* Info.plist */,
 			);
 			path = CityHopper;
@@ -571,6 +582,7 @@
 				BCAEA8C129C2723100C98647 /* AppDelegate.swift in Sources */,
 				BC9B1E3729DFCFD000182F87 /* SavedCityView.swift in Sources */,
 				BCAEA90929C277C700C98647 /* NetworkManager.swift in Sources */,
+				BC52C8B92A32A83400C8DE3B /* Extension.swift in Sources */,
 				BC40BDC829D5061700BFC867 /* API_Token.swift in Sources */,
 				BC9B1E3B29DFDA1D00182F87 /* SavedCityListView.swift in Sources */,
 				BCAEA8FE29C2746200C98647 /* SelectView.swift in Sources */,

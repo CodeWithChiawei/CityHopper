@@ -12,7 +12,10 @@ class ContinentGlobeView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(ContinentGlobeCollectionCell.self, forCellWithReuseIdentifier: ContinentGlobeCollectionCell.identifier)
+        collectionView.register(ContinentGlobeCollectionCell.self,
+                                forCellWithReuseIdentifier: ContinentGlobeCollectionCell.identifier
+        )
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         collectionView.backgroundColor = .clear
         collectionView.allowsSelection = true
         return collectionView
@@ -50,7 +53,6 @@ class ContinentGlobeView: UIView {
         addSubview(collectionView)
         addSubview(exploreButton)
         
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         collectionView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         collectionView.heightAnchor.constraint(equalToConstant: 75).isActive = true
@@ -66,17 +68,5 @@ class ContinentGlobeView: UIView {
         exploreButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         exploreButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 85).isActive = true
         exploreButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -85).isActive = true
-    }
-    
-}
-
-extension UIButton {
-    func addShadow() {
-        layer.masksToBounds = false
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.5
-        layer.shadowOffset = CGSize(width: 0, height: 2)
-        layer.shadowRadius = 4
-        clipsToBounds = false
     }
 }
