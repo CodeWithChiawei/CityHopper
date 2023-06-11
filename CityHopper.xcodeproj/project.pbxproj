@@ -45,8 +45,8 @@
 		BCAEA8F629C2741A00C98647 /* ContinentGlobeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAEA8F529C2741A00C98647 /* ContinentGlobeCollectionCell.swift */; };
 		BCAEA8F829C2742D00C98647 /* ContinentGlobeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAEA8F729C2742D00C98647 /* ContinentGlobeView.swift */; };
 		BCAEA8FA29C2743B00C98647 /* ContinentGlobe_GlobeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAEA8F929C2743B00C98647 /* ContinentGlobe_GlobeView.swift */; };
-		BCAEA8FC29C2745300C98647 /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAEA8FB29C2745300C98647 /* SelectViewController.swift */; };
-		BCAEA8FE29C2746200C98647 /* SelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAEA8FD29C2746200C98647 /* SelectView.swift */; };
+		BCAEA8FC29C2745300C98647 /* GeneratedCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAEA8FB29C2745300C98647 /* GeneratedCityViewController.swift */; };
+		BCAEA8FE29C2746200C98647 /* GeneratedCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAEA8FD29C2746200C98647 /* GeneratedCityView.swift */; };
 		BCAEA90629C2769100C98647 /* CountryJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = BCAEA90529C2769100C98647 /* CountryJSON.json */; };
 		BCAEA90929C277C700C98647 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAEA90829C277C700C98647 /* NetworkManager.swift */; };
 		BCAEA90D29C2864D00C98647 /* CountryFetchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAEA90C29C2864D00C98647 /* CountryFetchModel.swift */; };
@@ -102,8 +102,8 @@
 		BCAEA8F529C2741A00C98647 /* ContinentGlobeCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinentGlobeCollectionCell.swift; sourceTree = "<group>"; };
 		BCAEA8F729C2742D00C98647 /* ContinentGlobeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinentGlobeView.swift; sourceTree = "<group>"; };
 		BCAEA8F929C2743B00C98647 /* ContinentGlobe_GlobeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinentGlobe_GlobeView.swift; sourceTree = "<group>"; };
-		BCAEA8FB29C2745300C98647 /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
-		BCAEA8FD29C2746200C98647 /* SelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectView.swift; sourceTree = "<group>"; };
+		BCAEA8FB29C2745300C98647 /* GeneratedCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedCityViewController.swift; sourceTree = "<group>"; };
+		BCAEA8FD29C2746200C98647 /* GeneratedCityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedCityView.swift; sourceTree = "<group>"; };
 		BCAEA90529C2769100C98647 /* CountryJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CountryJSON.json; sourceTree = "<group>"; };
 		BCAEA90829C277C700C98647 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		BCAEA90C29C2864D00C98647 /* CountryFetchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryFetchModel.swift; sourceTree = "<group>"; };
@@ -362,8 +362,8 @@
 		BCAEA90729C276A400C98647 /* Select */ = {
 			isa = PBXGroup;
 			children = (
-				BCAEA8FB29C2745300C98647 /* SelectViewController.swift */,
-				BCAEA8FD29C2746200C98647 /* SelectView.swift */,
+				BCAEA8FB29C2745300C98647 /* GeneratedCityViewController.swift */,
+				BCAEA8FD29C2746200C98647 /* GeneratedCityView.swift */,
 				BC40BDD029D51F0600BFC867 /* SelectViewModel.swift */,
 				BC2E407B29C39C300092A3F9 /* SelectedCityModel.swift */,
 			);
@@ -585,9 +585,9 @@
 				BC52C8B92A32A83400C8DE3B /* Extension.swift in Sources */,
 				BC40BDC829D5061700BFC867 /* API_Token.swift in Sources */,
 				BC9B1E3B29DFDA1D00182F87 /* SavedCityListView.swift in Sources */,
-				BCAEA8FE29C2746200C98647 /* SelectView.swift in Sources */,
+				BCAEA8FE29C2746200C98647 /* GeneratedCityView.swift in Sources */,
 				BC9A710429E7E64100648285 /* ProfileMapView.swift in Sources */,
-				BCAEA8FC29C2745300C98647 /* SelectViewController.swift in Sources */,
+				BCAEA8FC29C2745300C98647 /* GeneratedCityViewController.swift in Sources */,
 				BCAEA8FA29C2743B00C98647 /* ContinentGlobe_GlobeView.swift in Sources */,
 				BC40BDD129D51F0600BFC867 /* SelectViewModel.swift in Sources */,
 				BCAEA8F629C2741A00C98647 /* ContinentGlobeCollectionCell.swift in Sources */,

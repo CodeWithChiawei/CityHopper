@@ -9,11 +9,24 @@ import Foundation
 import UIKit
 import MapboxMaps
 
-class SelectView: UIView {
+class GeneratedCityView: UIView {
     
-    var mapView: MapView?
+    var mapView: MapView = {
+        let myResourceOptions = ResourceOptions(accessToken: APIToken.mapboxMapsToken)
+        let myMapInitOptions = MapInitOptions(resourceOptions: myResourceOptions,
+                                              cameraOptions: CameraOptions(center: CLLocationCoordinate2D(latitude: 0,
+                                                                                                          longitude: 0),
+                                                                           zoom: 7),
+                                              styleURI: StyleURI(rawValue: MapStyleURI.cityPickMap.rawValue)
+        )
+        let map = MapView(frame: .zero, mapInitOptions: myMapInitOptions)
+              map.translatesAutoresizingMaskIntoConstraints = false
+              map.isUserInteractionEnabled = false
+        return map
+        }()
+    
     var mapCamera: CameraOptions?
-    lazy var pointAnnotationManager = mapView?.annotations.makePointAnnotationManager()
+    lazy var pointAnnotationManager = mapView.annotations.makePointAnnotationManager()
     
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -101,8 +114,8 @@ class SelectView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setConstraint()
         cityMapConfigures()
+        setConstraint()
     }
     
     required init?(coder: NSCoder) {
@@ -110,15 +123,10 @@ class SelectView: UIView {
     }
     
     private func setConstraint() {
-        
-        let myResourceOptions = ResourceOptions(accessToken: APIToken.mapboxMapsToken)
-        let myMapInitOptions = MapInitOptions(resourceOptions: myResourceOptions,cameraOptions: CameraOptions(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), zoom: 7), styleURI: StyleURI(rawValue: MapStyleURI.cityPickMap.rawValue))
-        self.mapView = MapView(frame: .zero, mapInitOptions: myMapInitOptions)
-        
         insertSubview(backgroundImageView, at: 0)
         addSubview(cityLabel)
         addSubview(addToFutureVisitButton)
-        addSubview(mapView ?? MapView())
+        addSubview(mapView)
         addSubview(backButton)
         addSubview(regenerateButton)
         addSubview(addToVisitedButton)
@@ -133,16 +141,11 @@ class SelectView: UIView {
         cityLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         cityLabel.heightAnchor.constraint(equalToConstant: 95).isActive = true
         
-        mapView?.isUserInteractionEnabled = false
-        mapView?.translatesAutoresizingMaskIntoConstraints = false
-        mapView?.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        mapView?.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 10).isActive = true
-        mapView?.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-        mapView?.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
-//        cityMap?.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height/2).isActive = true
-        mapView?.bottomAnchor.constraint(equalTo: addToFutureVisitButton.topAnchor, constant: -40).isActive = true
-        mapView?.layer.cornerRadius = 25
-        mapView?.clipsToBounds = true
+        mapView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        mapView.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 10).isActive = true
+        mapView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+        mapView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        mapView.bottomAnchor.constraint(equalTo: addToFutureVisitButton.topAnchor, constant: -40).isActive = true
         
         regenerateButton.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -40).isActive = true
         regenerateButton.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 45).isActive = true
@@ -167,33 +170,40 @@ class SelectView: UIView {
     }
     
     private func cityMapConfigures() {
-        mapView?.ornaments.scaleBarView.removeFromSuperview()
-        mapView?.ornaments.compassView.removeFromSuperview()
-        mapView?.ornaments.logoView.removeFromSuperview()
-        mapView?.ornaments.attributionButton.removeFromSuperview()
-        mapView?.layer.borderColor = UIColor.black.cgColor
-        mapView?.layer.borderWidth = 2
-        mapView?.isUserInteractionEnabled = false
+        let myResourceOptions = ResourceOptions(accessToken: APIToken.mapboxMapsToken)
+        let myMapInitOptions = MapInitOptions(resourceOptions: myResourceOptions,cameraOptions: CameraOptions(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), zoom: 7), styleURI: StyleURI(rawValue: MapStyleURI.cityPickMap.rawValue))
+        self.mapView = MapView(frame: .zero, mapInitOptions: myMapInitOptions)
+        
+        mapView.ornaments.scaleBarView.removeFromSuperview()
+        mapView.ornaments.compassView.removeFromSuperview()
+        mapView.ornaments.logoView.removeFromSuperview()
+        mapView.ornaments.attributionButton.removeFromSuperview()
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        mapView.layer.borderColor = UIColor.black.cgColor
+        mapView.layer.borderWidth = 2
+        mapView.isUserInteractionEnabled = false
+        mapView.layer.cornerRadius = 25
+        mapView.clipsToBounds = true
     }
     
     func setupMap(with latitude: Double, and longitude: Double) {
         let cameraOptions = CameraOptions(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), zoom: 1.5)
-        mapView?.mapboxMap.setCamera(to: cameraOptions)
+        mapView.mapboxMap.setCamera(to: cameraOptions)
         setupPin(with: latitude, and: longitude)
     }
     
     private func setupPin( with latitude: Double, and longitude: Double) {
-        self.pointAnnotationManager?.annotations.removeAll()
+        self.pointAnnotationManager.annotations.removeAll()
         var cityPointAnnotation = PointAnnotation(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
         if let userLatitdue = LocationManager.shared.latitude, let userLongitude = LocationManager.shared.longitude {
             var userPointAnnotation = PointAnnotation(coordinate: CLLocationCoordinate2D(latitude: userLatitdue, longitude: userLongitude))
             userPointAnnotation.image = .init(image: UIImage(named: "currentLocationPin")!, name: "currentLocationPin")
-            pointAnnotationManager?.annotations.append(userPointAnnotation)
+            pointAnnotationManager.annotations.append(userPointAnnotation)
         }
         cityPointAnnotation.image = .init(image: UIImage(named: "red_pin")!, name: "red_pin")
         cityPointAnnotation.iconAnchor = .bottom
         
-        pointAnnotationManager?.annotations.append(cityPointAnnotation)
+        pointAnnotationManager.annotations.append(cityPointAnnotation)
     }
     
     func configure(with city: String, and countryCode: String) {

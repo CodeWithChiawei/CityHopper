@@ -113,7 +113,7 @@ class ContinentGlobeViewController: UIViewController  {
             and: city.longitude
         )
         loadingScreen.dismiss(animated: true)
-        contentView.globeView.globe?.camera.fly(
+        contentView.globeView.globe.camera.fly(
             to: CameraOptions(
                 center: CLLocationCoordinate2D(
                     latitude: city.latitude,
@@ -124,12 +124,12 @@ class ContinentGlobeViewController: UIViewController  {
             ),
             duration: 1.5
         ) { [weak self] _ in
-            let cityViewControler = SelectViewController()
+            let cityViewControler = GeneratedCityViewController()
             cityViewControler.modalPresentationStyle = .fullScreen
             self?.haptics.impactOccurred()
             self?.present(cityViewControler, animated: true)
             self?.isUIUserInteratable(isActive: true)
-            self?.contentView.globeView.cityPointAnnotationManager?.annotations.removeAll()
+            self?.contentView.globeView.cityPointAnnotationManager.annotations.removeAll()
         }
     }
     

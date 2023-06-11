@@ -11,7 +11,7 @@ import UIKit
 class InstructionView: UIView {
     
     //Private this
-    let scrollView = InstructionScrollView()
+    private let scrollView = InstructionScrollView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 
-class SelectViewController: UIViewController {
+class GeneratedCityViewController: UIViewController {
     
     private let viewModel = SelectViewModel()
-    private let contentView = SelectView()
+    private let contentView = GeneratedCityView()
     private let haptics = UIImpactFeedbackGenerator(style: .light)
 
     override func loadView() {
@@ -71,9 +71,7 @@ class SelectViewController: UIViewController {
     
     @objc
     private func addToFutureButtonTapped() {
-        
         haptics.impactOccurred()
-        
         guard let city = viewModel.cityData else { return }
         city.willVisit = true
         if let existingCity = CityModelController.shared.cities.first(where: { $0.latitude == city.latitude && $0.longitude == city.longitude }) {
@@ -83,23 +81,19 @@ class SelectViewController: UIViewController {
     }
     
     // MARK: - Visited
-    
     @objc
     private func addToVisitedButtonTapped() {
         haptics.impactOccurred()
-        let selfController = SelectViewController()
+        let selfController = GeneratedCityViewController()
         
         guard let city = viewModel.cityData else { return }
         city.didVisit = true
         if let existingCity = CityModelController.shared.cities.first(where: { $0.latitude == city.latitude && $0.longitude == city.longitude }) {
             CityModelController.shared.updateCityIDidVisit(city: existingCity, didVisit: city.didVisit)
         }
-        
         navigationController?.pushViewController(selfController, animated: false)
-        regenerate(visited: true, cityName: city.name ?? ""  )
+        regenerate(visited: true, cityName: city.name)
     }
-    
-    
     // MARK: - Regenerate
     
     @objc
@@ -108,9 +102,9 @@ class SelectViewController: UIViewController {
         haptics.impactOccurred()
     }
     
-    private func regenerate(visited: Bool, cityName: String) {
+    private func regenerate(visited: Bool, cityName: String?) {
         let loadingScreen = RegenerateLoadingViewController()
-        loadingScreen.city = cityName
+        loadingScreen.city = cityName ?? ""
         loadingScreen.isVisited = visited
         loadingScreen.modalTransitionStyle = .crossDissolve
         loadingScreen.modalPresentationStyle = .overFullScreen
