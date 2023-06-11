@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SelectedCityModel {
+struct GeneratedCityModel {
     
     var cityName: String
     var countryCode: String

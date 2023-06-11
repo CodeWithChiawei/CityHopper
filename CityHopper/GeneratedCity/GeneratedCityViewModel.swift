@@ -7,15 +7,15 @@
 
 import Foundation
 
-class SelectViewModel {
+class GeneratedCityViewModel {
     
     private let networkManager = NetworkManager()
-    var cityModelData: SelectedCityModel?
-    var cityData: City?
+    var generatedCityModelData: GeneratedCityModel?
+    var city: City?
     
     func assignCityModelData () {
         guard let city = CityModelController.shared.exploreCity else { return }
-        self.cityModelData = SelectedCityModel(
+        self.generatedCityModelData = GeneratedCityModel(
             cityName: city.name,
             countryCode: city.countryCode,
             latitude: city.latitude,
@@ -36,20 +36,20 @@ class SelectViewModel {
         }
     }
     
-    func assignCity(newCity: SelectedCityModel) {
+    func assignCity(newCity: GeneratedCityModel) {
         if let existingCity = CityModelController.shared.cities.first(where: { $0.latitude == newCity.latitude && $0.longitude == newCity.longitude }) {
-            cityData = existingCity
+            city = existingCity
         } else {
             networkManager.fetchFlagImageData(with: newCity.countryCode) { [weak self] data in
-                self?.cityData = City(context: CoreDataStack.context)
-                self?.cityData?.name = newCity.cityName
-                self?.cityData?.countryCode = newCity.countryCode
-                self?.cityData?.latitude = newCity.latitude
-                self?.cityData?.longitude = newCity.longitude
-                self?.cityData?.isFavorited = false
-                self?.cityData?.willVisit = false
-                self?.cityData?.didVisit = false
-                self?.cityData?.image = data
+                self?.city = City(context: CoreDataStack.context)
+                self?.city?.name = newCity.cityName
+                self?.city?.countryCode = newCity.countryCode
+                self?.city?.latitude = newCity.latitude
+                self?.city?.longitude = newCity.longitude
+                self?.city?.isFavorited = false
+                self?.city?.willVisit = false
+                self?.city?.didVisit = false
+                self?.city?.image = data
                 CityModelController.shared.saveData()
             }
         }

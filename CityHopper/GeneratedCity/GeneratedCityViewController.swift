@@ -10,7 +10,7 @@ import UIKit
 
 class GeneratedCityViewController: UIViewController {
     
-    private let viewModel = SelectViewModel()
+    private let viewModel = GeneratedCityViewModel()
     private let contentView = GeneratedCityView()
     private let haptics = UIImpactFeedbackGenerator(style: .light)
 
@@ -44,19 +44,19 @@ class GeneratedCityViewController: UIViewController {
     }
     
     private func configureCityData() {
-        guard let city = viewModel.cityModelData?.cityName,
-              let countryCode = viewModel.cityModelData?.countryCode,
-              let latitude = viewModel.cityModelData?.latitude,
-              let longitude = viewModel.cityModelData?.longitude
+        guard let city = viewModel.generatedCityModelData?.cityName,
+              let countryCode = viewModel.generatedCityModelData?.countryCode,
+              let latitude = viewModel.generatedCityModelData?.latitude,
+              let longitude = viewModel.generatedCityModelData?.longitude
         else { return }
         
         contentView.configure(with: city, and: countryCode)
         contentView.setupMap(with: latitude, and: longitude)
         
         if let existingCity = CityModelController.shared.cities.first(where: { $0.latitude == latitude && $0.longitude == longitude }) {
-            viewModel.cityData = existingCity
+            viewModel.city = existingCity
         } else {
-            guard let newCity = viewModel.cityModelData else { return }
+            guard let newCity = viewModel.generatedCityModelData else { return }
             viewModel.assignCity(newCity: newCity)
         }
     }
@@ -72,7 +72,7 @@ class GeneratedCityViewController: UIViewController {
     @objc
     private func addToFutureButtonTapped() {
         haptics.impactOccurred()
-        guard let city = viewModel.cityData else { return }
+        guard let city = viewModel.city else { return }
         city.willVisit = true
         if let existingCity = CityModelController.shared.cities.first(where: { $0.latitude == city.latitude && $0.longitude == city.longitude }) {
             CityModelController.shared.updateCityWillVisit(city: existingCity, willVisit: city.willVisit)
@@ -86,7 +86,7 @@ class GeneratedCityViewController: UIViewController {
         haptics.impactOccurred()
         let selfController = GeneratedCityViewController()
         
-        guard let city = viewModel.cityData else { return }
+        guard let city = viewModel.city else { return }
         city.didVisit = true
         if let existingCity = CityModelController.shared.cities.first(where: { $0.latitude == city.latitude && $0.longitude == city.longitude }) {
             CityModelController.shared.updateCityIDidVisit(city: existingCity, didVisit: city.didVisit)
@@ -116,9 +116,9 @@ class GeneratedCityViewController: UIViewController {
                     self?.contentView.setupMap(with: city.latitude, and: city.longitude)
                     
                     if let existingCity = CityModelController.shared.cities.first(where: { $0.latitude == city.latitude && $0.longitude == city.longitude }) {
-                        self?.viewModel.cityData = existingCity
+                        self?.viewModel.city = existingCity
                     } else {
-                        guard let newCity = self?.viewModel.cityModelData else { return }
+                        guard let newCity = self?.viewModel.generatedCityModelData else { return }
                         self?.viewModel.assignCity(newCity: newCity)
                     }
                 case .failure(let error):
