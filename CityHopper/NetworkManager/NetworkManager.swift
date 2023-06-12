@@ -85,7 +85,7 @@ class NetworkManager {
             }
             if let data = data {
                 let cityDatas = try? JSONDecoder().decode(CityFetchModel.self, from: data)
-                if cityDatas?.city.count == 0 {
+                if cityDatas?.city?.count == 0 {
                     completion(.failure(.noCityDataAvailable))
                 } else {
 //                    let randomNum = Int.random(in: 0..<(cityDatas?.city.count ?? 0))

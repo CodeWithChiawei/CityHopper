@@ -27,7 +27,7 @@ class GeneratedCityViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.assignCityModelData()
-        let selectionInstructionVC = SelectInstructionViewController()
+        let selectionInstructionVC = GeneratedCityInstructionViewController()
         configureCityData()
         selectionInstructionVC.modalPresentationStyle = .overFullScreen
         let isFirstTimeUser = UserDefaults().bool(forKey: UserDefaultKeys.firstTimeUse.rawValue)
@@ -75,7 +75,7 @@ class GeneratedCityViewController: UIViewController {
         guard let city = viewModel.city else { return }
         city.willVisit = true
         if let existingCity = CityModelController.shared.cities.first(where: { $0.latitude == city.latitude && $0.longitude == city.longitude }) {
-            CityModelController.shared.updateCityWillVisit(city: existingCity, willVisit: city.willVisit)
+            CityModelController.shared.updateCity(city: existingCity, for: .willVisit(city.willVisit))
         }
         self.regenerate(visited: false, cityName: city.name ?? "")
     }
@@ -89,7 +89,7 @@ class GeneratedCityViewController: UIViewController {
         guard let city = viewModel.city else { return }
         city.didVisit = true
         if let existingCity = CityModelController.shared.cities.first(where: { $0.latitude == city.latitude && $0.longitude == city.longitude }) {
-            CityModelController.shared.updateCityIDidVisit(city: existingCity, didVisit: city.didVisit)
+            CityModelController.shared.updateCity(city: existingCity, for: .didVisit(city.didVisit))
         }
         navigationController?.pushViewController(selfController, animated: false)
         regenerate(visited: true, cityName: city.name)

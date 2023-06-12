@@ -14,7 +14,6 @@ class SavedCityViewController: UIViewController {
     private let contentView = SavedCityView()
     private let viewModel = SavedCityViewModel()
     private let haptics = UIImpactFeedbackGenerator(style: .light)
-
     
     override func loadView() {
         view = contentView
@@ -110,7 +109,7 @@ extension SavedCityViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension SavedCityViewController: ProfileDelegate {
+extension SavedCityViewController: ProfileViewControllerDelegate {
     func cityDataDidUpdate() {
         if contentView.listSegmentedControl.selectedSegmentIndex == 0 {
             viewModel.filterData(with: CityModelController.shared.cities, by: 0)

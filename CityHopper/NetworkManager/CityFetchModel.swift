@@ -10,7 +10,7 @@ struct CityFetchModel: Codable {
     private enum CodingKeys: String, CodingKey {
         case city = "response"
     }
-    let city: [FetchCityModel]
+    let city: [FetchCityModel]?
 }
 
 struct FetchCityModel: Codable {

@@ -13,41 +13,9 @@ class SavedCityView: UIView {
     let listView = SavedCityListView()
     let mapView = SavedCityMapView()
     
-    let viewTypeSegmentedControl: UISegmentedControl = {
-        let items = ["List View", "Map View"]
-        let segmentedControl = UISegmentedControl(items: items)
-        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        segmentedControl.setTitleTextAttributes(attributes, for: .normal)
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.backgroundColor = .darkGray
-        segmentedControl.selectedSegmentTintColor = .systemBlue
-        return segmentedControl
-    }()
-    
-    let mapSegmentedControl: UISegmentedControl = {
-        let items = ["Future", "Visited", "Favorite"]
-        let segmentedControl = UISegmentedControl(items: items)
-        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        segmentedControl.setTitleTextAttributes(attributes, for: .normal)
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.backgroundColor = .darkGray
-        segmentedControl.selectedSegmentTintColor = .systemBlue
-        return segmentedControl
-    }()
-    
-    let listSegmentedControl: UISegmentedControl = {
-        let items = ["Future", "Visited", "Favorite"]
-        let segmentedControl = UISegmentedControl(items: items)
-        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        segmentedControl.setTitleTextAttributes(attributes, for: .normal)
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.backgroundColor = .darkGray
-        segmentedControl.selectedSegmentTintColor = .systemBlue
-        return segmentedControl
-    }()
+    let viewTypeSegmentedControl: UISegmentedControl = .create(withItems: ["List View", "Map View"], selectedIndex: 0)
+    let mapSegmentedControl: UISegmentedControl = .create(withItems: ["Future", "Visited", "Favorite"], selectedIndex: 0)
+    let listSegmentedControl: UISegmentedControl = .create(withItems: ["Future", "Visited", "Favorite"], selectedIndex: 0)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

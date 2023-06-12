@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum CityUpdate {
+    case willVisit(Bool)
+    case didVisit(Bool)
+    case isFavorited(Bool)
+}
+
 class CityModelController {
     
     static let shared = CityModelController()
@@ -46,28 +52,15 @@ class CityModelController {
         saveData()
     }
     
-    func updateCityWillVisit(city: City, willVisit: Bool) {
-        city.willVisit = willVisit
-        saveData()
-    }
-    
-    func updateCityIDidVisit(city: City, didVisit: Bool) {
-        city.didVisit = didVisit
-        saveData()
-    }
-    
-    func updateCityIsFavorited(city: City, isFavorited: Bool) {
-        city.isFavorited = isFavorited
-        saveData()
-    }
-    
-    func updateCityIsGoing(city: City, willVisit: Bool) {
-        city.willVisit = willVisit
-        saveData()
-     }
-    
-    func updateCityisVisited(city: City, didVisit: Bool) {
-        city.didVisit = didVisit
+    func updateCity(city: City, for property: CityUpdate) {
+        switch property {
+        case .willVisit(let willVisit):
+            city.willVisit = willVisit
+        case .didVisit(let didVisit):
+            city.didVisit = didVisit
+        case .isFavorited(let isFavorited):
+            city.isFavorited = isFavorited
+        }
         saveData()
     }
     

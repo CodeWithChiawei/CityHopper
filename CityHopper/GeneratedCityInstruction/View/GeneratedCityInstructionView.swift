@@ -7,7 +7,7 @@
 import Foundation
 import UIKit
 
-class SelectInstructionView: UIView {
+class GeneratedCityInstructionView: UIView {
     
     private var imageViewCenterXConstraint: NSLayoutConstraint?
     private var imageViewBottomConstraint: NSLayoutConstraint?

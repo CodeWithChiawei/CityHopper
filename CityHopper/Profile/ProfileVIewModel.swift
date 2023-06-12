@@ -13,8 +13,8 @@ class ProfileViewModel {
     
     func updateCity() {
         guard let city = city else { return }
-        CityModelController.shared.updateCityisVisited(city: city, didVisit: city.didVisit)
-        CityModelController.shared.updateCityIsGoing(city: city, willVisit: city.willVisit)
+        CityModelController.shared.updateCity(city: city, for: .didVisit(city.didVisit))
+        CityModelController.shared.updateCity(city: city, for: .willVisit(city.willVisit))
     }  
 }
 

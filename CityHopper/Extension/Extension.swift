@@ -43,5 +43,16 @@ extension UISegmentedControl {
         layer.shadowRadius = 4
         clipsToBounds = false
     }
+    
+    static func create(withItems items: [String], selectedIndex: Int) -> UISegmentedControl {
+            let segmentedControl = UISegmentedControl(items: items)
+            let attributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            segmentedControl.setTitleTextAttributes(attributes, for: .normal)
+            segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+            segmentedControl.selectedSegmentIndex = selectedIndex
+            segmentedControl.backgroundColor = .darkGray
+            segmentedControl.selectedSegmentTintColor = .systemBlue
+            return segmentedControl
+        }
 }
 

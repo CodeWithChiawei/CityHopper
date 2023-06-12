@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 import MapboxMaps
 
-protocol ProfileDelegate: AnyObject {
+protocol ProfileViewControllerDelegate: AnyObject {
     func cityDataDidUpdate()
 }
 
 class ProfileViewController: UIViewController {
     
-    weak var delegate: ProfileDelegate?
+    weak var delegate: ProfileViewControllerDelegate?
     private let viewModel = ProfileViewModel()
     private let contentView = ProfileView()
     private let haptics = UIImpactFeedbackGenerator(style: .light)

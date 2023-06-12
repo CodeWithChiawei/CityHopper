@@ -206,7 +206,7 @@ class GeneratedCityView: UIView {
         pointAnnotationManager.annotations.append(cityPointAnnotation)
     }
     
-    func configure(with city: String, and countryCode: String) {
+    func configure(with city: String = "", and countryCode: String = "") {
         if let countryName = Locale.current.localizedString(forRegionCode: countryCode) {
             self.cityLabel.text = "\(city.capitalized)\n\(countryName)"
         } else {

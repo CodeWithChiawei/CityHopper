@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 
-class SelectInstructionViewController: UIViewController {
+class GeneratedCityInstructionViewController: UIViewController {
     
-    private var pageCount = 1
-    private let contentView = SelectInstructionView()
+    private var instructionStep = 1
+    private let contentView = GeneratedCityInstructionView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +21,9 @@ class SelectInstructionViewController: UIViewController {
     
     @objc
     private func nextButtonTapped() {
-        pageCount += 1
-        contentView.viewConfig(with: pageCount)
-        if pageCount >= 5 {
+        instructionStep += 1
+        contentView.viewConfig(with: instructionStep)
+        if instructionStep >= 5 {
             dismiss(animated: false)
         }
     }
