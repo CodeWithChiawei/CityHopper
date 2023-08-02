@@ -21,7 +21,7 @@ class CityModelController {
     private let context = CoreDataStack.context
     var exploreCity: FetchCityModel?
     var cities = [City]()
-    var profileCity: City?
+    var city: City?
     
     func retrieveData(completion: @escaping () -> Void) {
         do {

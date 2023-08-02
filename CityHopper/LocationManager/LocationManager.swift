@@ -12,7 +12,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     static let shared = LocationManager()
     
-    
     let locationManager = CLLocationManager()
     var locationUpdateCompletion: ((CLLocation?) -> Void)?
     var currentLocation: CLLocation?

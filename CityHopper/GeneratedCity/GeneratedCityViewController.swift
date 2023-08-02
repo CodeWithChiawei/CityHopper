@@ -77,7 +77,7 @@ class GeneratedCityViewController: UIViewController {
         if let existingCity = CityModelController.shared.cities.first(where: { $0.latitude == city.latitude && $0.longitude == city.longitude }) {
             CityModelController.shared.updateCity(city: existingCity, for: .willVisit(city.willVisit))
         }
-        self.regenerate(visited: false, cityName: city.name ?? "")
+        self.regenerateCity(visited: false, cityName: city.name ?? "")
     }
     
     // MARK: - Visited
@@ -92,17 +92,17 @@ class GeneratedCityViewController: UIViewController {
             CityModelController.shared.updateCity(city: existingCity, for: .didVisit(city.didVisit))
         }
         navigationController?.pushViewController(selfController, animated: false)
-        regenerate(visited: true, cityName: city.name)
+        regenerateCity(visited: true, cityName: city.name)
     }
     // MARK: - Regenerate
     
     @objc
     private func regenerateButtonTapped() {
-        regenerate(visited: true, cityName: "")
+        regenerateCity(visited: true, cityName: "")
         haptics.impactOccurred()
     }
     
-    private func regenerate(visited: Bool, cityName: String?) {
+    private func regenerateCity(visited: Bool, cityName: String?) {
         let loadingScreen = RegenerateLoadingViewController()
         loadingScreen.city = cityName ?? ""
         loadingScreen.isVisited = visited

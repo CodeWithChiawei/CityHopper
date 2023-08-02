@@ -102,7 +102,7 @@ extension SavedCityViewController: UITableViewDelegate, UITableViewDataSource {
         let cityData = viewModel.cityData[indexPath.row]
         cityProfileVC.modalPresentationStyle = .overCurrentContext
         cityProfileVC.modalTransitionStyle = .crossDissolve
-        CityModelController.shared.profileCity = cityData
+        CityModelController.shared.city = cityData
         cityProfileVC.delegate = self
         tableView.deselectRow(at: indexPath, animated: true)
         present(cityProfileVC, animated: true)

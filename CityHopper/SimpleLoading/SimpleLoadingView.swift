@@ -54,7 +54,6 @@ class SimpleLoadingView: UIView {
         rotationAnimation.duration = 0.75
         rotationAnimation.isCumulative = true
         rotationAnimation.repeatCount = .infinity
-
         loadingGlobeImageView.layer.add(rotationAnimation, forKey: "rotationAnimation")
     }
 }

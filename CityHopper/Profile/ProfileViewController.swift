@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.city = CityModelController.shared.profileCity
+        viewModel.city = CityModelController.shared.city
         guard let city = viewModel.city else { return }
         contentView.containerView.configureCityInfo(with: city)
         contentView.configView()

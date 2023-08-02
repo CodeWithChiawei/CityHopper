@@ -15,11 +15,7 @@ class LocationRequestViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         LocationManager.shared.startLocation { [weak self] location in
-            if location == nil {
                 self?.presentTabBar()
-            } else {
-                self?.presentTabBar()
-            }
         }
     }
     

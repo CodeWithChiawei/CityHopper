@@ -17,6 +17,7 @@ class ContinentGlobeViewController: UIViewController  {
     private let viewModel = ContinentGlobeViewModel()
     private let contentView = ContinentGlobeView()
     private let continentData = ContinentData()
+
     private var previousSelectedIndex: IndexPath? = nil
     private let haptics = UIImpactFeedbackGenerator(style: .medium)
     
@@ -72,9 +73,13 @@ class ContinentGlobeViewController: UIViewController  {
         haptics.impactOccurred()
         isUIUserInteratable(isActive: false)
         guard let _ = UserDefaults.standard.string(forKey: UserDefaultKeys.selectedCellContinent.rawValue) else {
-            self.presentNoContinentSelectedAlert()
+            let alertController = UIAlertController(title: "No Continent Selected", message: "Please select a continent \n to explore new city.", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Okay", style: .cancel))
+            present(alertController, animated: true)
+            isUIUserInteratable(isActive: true)
             return
         }
+        
         let loadingScreen = SimpleLoadingViewController()
         presentLoadingScreen(loadingScreen: loadingScreen)
         viewModel.fetchCity { [weak self] result in
@@ -89,13 +94,6 @@ class ContinentGlobeViewController: UIViewController  {
         }
     }
     
-    private func presentNoContinentSelectedAlert() {
-        let alertController = UIAlertController(title: "No Continent Selected", message: "Please select a continent \n to explore new city.", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Okay", style: .cancel))
-        present(alertController, animated: true)
-        isUIUserInteratable(isActive: true)
-    }
-    
     private func presentLoadingScreen(loadingScreen: UIViewController) {
         loadingScreen.modalPresentationStyle = .overFullScreen
         loadingScreen.modalTransitionStyle = .crossDissolve
@@ -104,10 +102,6 @@ class ContinentGlobeViewController: UIViewController  {
     
     private func handleSuccessFetch(city: FetchCityModel, loadingScreen: UIViewController) {
         CityModelController.shared.exploreCity = city
-        contentView.globeView.setCityPin(
-            with: city.latitude,
-            and: city.longitude
-        )
         contentView.globeView.setCityPin(
             with: city.latitude,
             and: city.longitude

@@ -9,7 +9,29 @@ import Foundation
 import UIKit
 import MapboxMaps
 
+struct MapBoxMapView {
+    
+    var mapView: MapView = {
+        let myResourceOptions = ResourceOptions(accessToken: APIToken.mapboxMapsToken)
+        let myMapInitOptions = MapInitOptions(resourceOptions: myResourceOptions,
+                                              cameraOptions: CameraOptions(center: CLLocationCoordinate2D(latitude: 0,
+                                                                                                          longitude: 0),
+                                                                           zoom: 7),
+                                              styleURI: StyleURI(rawValue: MapStyleURI.cityPickMap.rawValue)
+        )
+        let map = MapView(frame: .zero, mapInitOptions: myMapInitOptions)
+              map.translatesAutoresizingMaskIntoConstraints = false
+              map.isUserInteractionEnabled = false
+        return map
+        }()
+    
+    var mapCamera: CameraOptions?
+    lazy var pointAnnotationManager = mapView.annotations.makePointAnnotationManager()
+}
+
 class GeneratedCityView: UIView {
+    
+    var mapBoxMapView = MapBoxMapView()
     
     var mapView: MapView = {
         let myResourceOptions = ResourceOptions(accessToken: APIToken.mapboxMapsToken)
