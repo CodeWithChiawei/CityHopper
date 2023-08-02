@@ -51,7 +51,6 @@
 		BCAEA90929C277C700C98647 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAEA90829C277C700C98647 /* NetworkManager.swift */; };
 		BCAEA90D29C2864D00C98647 /* CountryFetchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAEA90C29C2864D00C98647 /* CountryFetchModel.swift */; };
 		BCAEA90F29C2866200C98647 /* CityFetchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAEA90E29C2866200C98647 /* CityFetchModel.swift */; };
-		BCB1EED02A390AE70078F198 /* MapBoxMapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB1EECF2A390AE70078F198 /* MapBoxMapsView.swift */; };
 		BCD84C5029F10D4E00854778 /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD84C4F29F10D4E00854778 /* InstructionViewController.swift */; };
 		BCD84C5229F10D6F00854778 /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD84C5129F10D6F00854778 /* InstructionView.swift */; };
 		BCDC331829D536D800496C97 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCDC331629D536D800496C97 /* CoreData.xcdatamodeld */; };
@@ -109,7 +108,6 @@
 		BCAEA90829C277C700C98647 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		BCAEA90C29C2864D00C98647 /* CountryFetchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryFetchModel.swift; sourceTree = "<group>"; };
 		BCAEA90E29C2866200C98647 /* CityFetchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityFetchModel.swift; sourceTree = "<group>"; };
-		BCB1EECF2A390AE70078F198 /* MapBoxMapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxMapsView.swift; sourceTree = "<group>"; };
 		BCD84C4F29F10D4E00854778 /* InstructionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
 		BCD84C5129F10D6F00854778 /* InstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
 		BCDC331729D536D800496C97 /* CityCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CityCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -366,7 +364,6 @@
 			children = (
 				BCAEA8FB29C2745300C98647 /* GeneratedCityViewController.swift */,
 				BCAEA8FD29C2746200C98647 /* GeneratedCityView.swift */,
-				BCB1EECF2A390AE70078F198 /* MapBoxMapsView.swift */,
 				BC52C8BB2A368AB300C8DE3B /* GeneratedCityViewModel.swift */,
 				BC2E407B29C39C300092A3F9 /* GeneratedCityModel.swift */,
 			);
@@ -584,7 +581,6 @@
 				BC9A70FF29E79F0E00648285 /* ProfileVIewModel.swift in Sources */,
 				BCAEA8EE29C273B700C98647 /* TabBarController.swift in Sources */,
 				BCAEA8C129C2723100C98647 /* AppDelegate.swift in Sources */,
-				BCB1EED02A390AE70078F198 /* MapBoxMapsView.swift in Sources */,
 				BC9B1E3729DFCFD000182F87 /* SavedCityView.swift in Sources */,
 				BCAEA90929C277C700C98647 /* NetworkManager.swift in Sources */,
 				BC52C8B92A32A83400C8DE3B /* Extension.swift in Sources */,
